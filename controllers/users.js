@@ -10,7 +10,6 @@ userRoutes.get("/", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(users);
       res.send(users);
     }
   });
