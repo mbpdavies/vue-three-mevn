@@ -15,4 +15,8 @@ userRoutes.get("/", (req, res) => {
   });
 });
 
+userRoutes.post("/", (req, res) => {
+  console.log(req.body);
+});
+
 module.exports = userRoutes;

@@ -8,13 +8,21 @@
 
 <script>
 import { ref } from "vue";
+import axios from "axios";
 export default {
   setup() {
     const name = ref("");
     const age = ref();
 
     const addUser = () => {
-      console.log(name.value + "" + age.value);
+      axios
+        .post("users", { name: name.value, age: age.value })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     };
 
     return {
