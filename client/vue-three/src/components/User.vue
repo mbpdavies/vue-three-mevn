@@ -1,14 +1,22 @@
 <template>
-  <p>{{ myRef }}</p>
-  <p>The current count is: {{ count }}</p>
-  <button @click="count++">Increase Counter</button>
-  <p>The value of the current count plus 10 = {{ calculated }}</p>
-  <add-user />
+  <div>
+    <p>{{ myRef }}</p>
+    <p>The current count is: {{ count }}</p>
+    <button @click="count++">Increase Counter</button>
+    <p>The value of the current count plus 10 = {{ calculated }}</p>
+    <add-user />
+    <button @click="getUsers">Get Users</button>
+    <div v-for="user in users" :key="user._id">
+      <p>{{ user.name }}</p>
+      <p>{{ user.age }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
 import { ref, computed } from "vue";
 import AddUser from "./AddUser.vue";
+import axios from "axios";
 export default {
   components: {
     AddUser,
@@ -25,11 +33,22 @@ export default {
       return count.value + 10;
     });
 
+    // get users from API
+    const users = ref([]);
+
+    const getUsers = () => {
+      axios.get("users").then((res) => {
+        users.value = res.data;
+      });
+    };
+
     // return state for use within templates
     return {
       myRef,
       count,
       calculated,
+      getUsers,
+      users,
     };
   },
 };

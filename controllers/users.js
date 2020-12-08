@@ -16,7 +16,8 @@ userRoutes.get("/", (req, res) => {
 });
 
 userRoutes.post("/", (req, res) => {
-  console.log(req.body);
+  const user = new userModel(req.body);
+  user.save().then((doc) => res.send(doc));
 });
 
 module.exports = userRoutes;
