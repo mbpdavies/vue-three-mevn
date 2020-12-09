@@ -10,7 +10,7 @@
 import { ref } from "vue";
 import axios from "axios";
 export default {
-  setup() {
+  setup(props, { emit }) {
     const name = ref("");
     const age = ref();
 
@@ -19,6 +19,7 @@ export default {
         .post("users", { name: name.value, age: age.value })
         .then((res) => {
           console.log(res);
+          emit("added");
         })
         .catch((err) => {
           console.log(err);

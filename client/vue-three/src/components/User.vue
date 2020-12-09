@@ -4,7 +4,7 @@
     <p>The current count is: {{ count }}</p>
     <button @click="count++">Increase Counter</button>
     <p>The value of the current count plus 10 = {{ calculated }}</p>
-    <add-user />
+    <add-user @added="getUsers" />
     <button @click="getUsers">Get Users</button>
     <div v-for="user in users" :key="user._id">
       <p>{{ user.name }}</p>
